@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Run myscript') {
             steps {
-                sh 'python3 myscript.py ${params.name} ${params.ages}'
+                sh "python3 myscript.py ${params.name} ${params.ages}"
             }
         }
     }
