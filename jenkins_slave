@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'name', defaultValue: '')
+        string(name: 'age', defaultValue: '')
+    }
+
+    stages {
+        stage('Run myscript') {
+            steps {
+                sh 'python3 myscript.py ${params.name} ${params.ages}'
+            }
+        }
+    }
+}
