@@ -13,8 +13,8 @@ pipeline {
             steps {
                 echo 'Start Trigger to send name and age to slave'
 
-                env.name=$(cat params.txt | awk '{ print $1 }')
-                env.age=$(cat params.txt | awk '{ print $2 }')
+                env.name=$(cat "params.txt" | awk "{ print $1 }")
+                env.age=$(cat "params.txt" | awk "{ print $2 }")
 
                 build job: 'slave', parameters: [
                     string(name: 'name', value: $name),
