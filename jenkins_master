@@ -12,8 +12,8 @@ pipeline {
         stage('Tigger the Slave Jobs') {
             steps {
                 echo 'Start Trigger to send name and age to slave'
-                sh "export name=$(cat 'params.txt' | awk '{ print $1 }')"
-                sh "export age=$(cat 'params.txt' | awk '{ print $2 }')"
+                sh "export name=$(cat 'params.txt' | awk '{ print \$1 }')"
+                sh "export age=$(cat 'params.txt' | awk '{ print \$2 }')"
                 build job: 'slave', parameters: [
                     string(name: 'name', value: $name),
                     string(name: 'age', value: $age)
