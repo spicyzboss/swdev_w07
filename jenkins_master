@@ -16,8 +16,8 @@ pipeline {
                 script {
                     def config_file = readJSON file: './config.json'
 
-                    env.name = config.name
-                    env.age = config.age
+                    env.name = config_file.name
+                    env.age = config_file.age
                 }
 
                 build job: 'slave', parameters: [
