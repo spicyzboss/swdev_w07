@@ -17,8 +17,10 @@ pipeline {
                     def config_file = readFile './config.json'
                     def config = new groovy.json.JsonSlurper().parseText(config_file)
 
-                    env.name = config.name
-                    env.age = config.age
+                    echo config
+
+                    env.name = config['name']
+                    env.age = config['age']
                 }
 
                 build job: 'slave', parameters: [
