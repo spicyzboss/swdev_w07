@@ -13,8 +13,13 @@ pipeline {
             steps {
                 echo 'Start Trigger to send name and age to slave'
 
-                env.name=$(sh -c 'cat "params.txt" | awk "{ print $1 }"')
-                env.age=$(sh -c 'cat "params.txt" | awk "{ print $2 }"')
+                script {
+                    def config_file = readFile './config.json'
+                    def config = new JsonSlurper().parseText(config_file)
+
+                    env.name = config.name
+                    env.age = config.age
+                }
 
                 build job: 'slave', parameters: [
                     string(name: 'name', value: $name),
