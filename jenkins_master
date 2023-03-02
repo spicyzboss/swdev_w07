@@ -14,13 +14,10 @@ pipeline {
                 echo 'Start Trigger to send name and age to slave'
 
                 script {
-                    def config_file = readFile './config.json'
-                    def config = new groovy.json.JsonSlurper().parseText(config_file)
+                    def config_file = readJSON file: './config.json'
 
-                    echo config
-
-                    env.name = config['name']
-                    env.age = config['age']
+                    env.name = config.name
+                    env.age = config.age
                 }
 
                 build job: 'slave', parameters: [
