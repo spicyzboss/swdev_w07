@@ -14,6 +14,8 @@ pipeline {
                 echo 'Start Trigger to send name and age to slave'
 
                 script {
+                    import groovy.json.JsonSlurper
+
                     def config_file = readFile './config.json'
                     def config = new JsonSlurper().parseText(config_file)
 
